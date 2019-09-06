@@ -1,26 +1,51 @@
 import React from 'react';
-import logo from './logo.svg';
+import axios from 'axios';
+import Card from 'react-bootstrap/Card';
+import DarkModeToggle from './components/DarkModeToggle';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      data: []
+    };
+  }
+
+  componentDidMount() {
+    this.getData();
+  }
+
+  getData() {
+    axios
+      .get('http://localhost:5000/api/players')
+      .then(response => this.setState({ data: response.data }))
+  }
+
+  render() {
+    const { data } = this.state;
+    
+    return (
+      <div className="App">
+        <h1>Sprint Challenge: Advanced React</h1>
+        <DarkModeToggle />
+        <div className="card-list">
+          {data.map(item => (
+            <Card>
+              <Card.Body>
+                <Card.Title>{item.name}</Card.Title>
+                <Card.Text>
+                  <p>{item.country}</p>
+                  <p>Number of searches: {item.searches}</p>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          ))}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
