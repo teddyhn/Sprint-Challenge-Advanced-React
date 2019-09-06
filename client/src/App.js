@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card';
-import DarkModeSlider from './components/DarkModeSlider';
+import DarkModeToggle from './components/DarkModeToggle';
 
 import './App.css';
 
@@ -29,7 +29,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>Sprint Challenge: Advanced React</h1>
-        <DarkModeSlider />
+        <DarkModeToggle />
         <div className="card-list">
           {data.map(item => (
             <Card>
