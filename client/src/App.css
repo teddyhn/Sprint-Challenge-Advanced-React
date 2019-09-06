@@ -1,0 +1,13 @@
+.App {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  margin: auto;
+  width: 90vw;
+}
+
+.card {
+  margin: 10px 5px;
+  width: 10vw;
+}
